@@ -1,0 +1,157 @@
+.ac_input {
+	width: 640px;
+	font-size: 32px;
+}
+
+.ac_results {
+	margin-top: 2px;
+	background-color: #fff;
+	border: solid 1px #ccc;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+#recipients.ac_results {
+	margin-top: 2px;
+	border: none;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	font-size: 12px;
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	line-height: 16px;
+	overflow: hidden;
+}
+
+	.ac_results .no-user, .ac_results .only-email {
+		color: #999;
+		padding: 4px 0;
+		font-size: 11px;
+	}
+	
+		.ac_results .no-user strong {
+			font-weight: normal;
+		}
+	
+		.ac_results .no-user .more-results {
+			color: #966;
+		}
+
+	.ac_results .only-email strong {
+		background-color: #ccc;
+		color: #fff;
+		padding: 3px 5px;
+	}
+	
+	.ac_results .addable {
+		display: inline-block;
+		width: 100%;
+		background: transparent url(../images/plus-circle.png) no-repeat scroll center right;
+		cursor: pointer;
+	}
+	
+	.ac_results .user-picture {
+		width: 32px;
+		height: 32px;
+		border: solid 2px #eee;
+		float: left;
+		overflow: hidden;
+		margin-right: 5px;
+	}
+		.ac_results .user-picture img {
+			background-color: #fff;
+			/* TODO: consider waiting wheel */
+		}
+	
+	.ac_results .user,
+	.ac_results .contact,
+	.ac_results .group,
+	.ac_results .mail {
+		margin-left: 40px;
+	}
+	
+	.ac_results .contact {
+		color: #888;
+	}
+
+	.ac_results .display-name {}
+		.ac_results .display-name strong {
+			-moz-background-clip:border;
+			-moz-background-inline-policy:continuous;
+			-moz-background-origin:padding;
+			background:#D8DFEA none repeat scroll 0 0;
+			color:#000000;
+			font-style:normal;
+			font-weight:bold;
+		}
+		.ac_results .display-name a {
+			color: inherit;
+		}
+	
+	.ac_results .email-address {
+		margin-left: 4px;
+		font-size: 11px;
+		color: #996;
+		line-height: 16px
+	}
+	
+		.ac_results .email-address strong {
+			font-weight: normal;
+		}
+	
+	.ac_results .title {
+		margin-left: 4px;
+		font-size: 11px;
+		color: #966;
+		line-height: 16px;
+	}
+
+	.ac_results .details {
+		display: block;
+		font-size: 11px;
+		margin-left: 4px;
+		color: #999;
+	}
+		.ac_results .details .country {
+			text-transform: uppercase;
+		}
+
+	.ac_results .mail a {
+		text-decoration: none;
+	}
+
+.ac_loading {
+	background: transparent url(../images/16_cycle_one_24.gif) no-repeat scroll 590px center;
+}
+
+.ac_even {
+}
+
+.ac_odd {
+}
+
+.ac_over {
+	background-color: #eee;
+}

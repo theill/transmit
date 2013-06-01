@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <assemblyIdentity name="bwoutlook, PublicKeyToken=6fe79fa574449051" />
+  <loaderSettings generateLogFile="true" shadowCopyEnabled="true" privileges="administrator" />
+  <!-- <loaderSettings generateLogFile="true" shadowCopyEnabled="true" privileges="user" /> -->
+</configuration>

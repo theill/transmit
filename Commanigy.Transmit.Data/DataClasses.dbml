@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="transmit_development" EntityNamespace="Commanigy.Transmit.Data" ContextNamespace="Commanigy.Transmit.Data" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=theill-pc;Initial Catalog=transmit_development;Persist Security Info=True;User ID=sa" SettingsObjectName="Commanigy.Transmit.Data.Properties.Settings" SettingsPropertyName="transmitConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Invitations" Member="Invitations">
+    <Type Name="Invitation">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SenderMail" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SenderDisplayName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RecipientMail" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="RecipientDisplayName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Files" Member="Files">
+    <Type Name="File">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PackageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FileHash" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="FileSize" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DownloadCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Package_File" Member="Package" ThisKey="PackageID" OtherKey="ID" Type="Package" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Transfers" Member="Transfers">
+    <Type Name="Transfer">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PackageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RecipientMail" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Package_Transfer" Member="Package" ThisKey="PackageID" OtherKey="ID" Type="Package" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Logs" Member="Logs">
+    <Type Name="Log">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreatedAt" Storage="_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Thread" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[Level]" Member="Level" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Logger" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="Exception" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Packages" Member="Packages">
+    <Type Name="Package">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SenderMail" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="Scanned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiresAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Package_File" Member="Files" ThisKey="ID" OtherKey="PackageID" Type="File" />
+      <Association Name="Package_Transfer" Member="Transfers" ThisKey="ID" OtherKey="PackageID" Type="Transfer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CommonName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GivenName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Mail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Department" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="AccountName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Messages" Member="Messages">
+    <Type Name="Message">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Culture" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="LookupKey" Type="System.String" DbType="Char(32) NOT NULL" CanBeNull="false" />
+      <Column Name="LookupMessage" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="LocalizedMessage" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Settings" Member="Settings">
+    <Type Name="Setting">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyLogo" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="InternalUrl" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ExternalUrl" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadUrl" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="StorageLocation" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="RestrictSettingsToGroup" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="LdapFilterName" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="LdapFilterMail" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="LdapFilterLogin" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="LdapSizeLimit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MailSecure" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MailReplyTo" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadSizeLimit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UploadChunked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShareMailSubject" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ShareMailBodyPlain" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ShareMailBodyHtml" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ShareDefaultMessage" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestMailSubject" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="RequestMailBodyPlain" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RequestMailBodyHtml" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RequestDefaultMessage" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadMailSubject" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UploadMailBodyPlain" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UploadMailBodyHtml" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UploadDefaultMessage" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="OutlookInjectedHtml" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

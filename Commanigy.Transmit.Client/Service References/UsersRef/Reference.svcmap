@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="08a2c764-22a9-42a4-a4f7-c2dd90faead7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Transmit.Internal/UsersService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UsersService.xsd" MetadataType="Schema" ID="45564f97-8986-4086-8f2a-74bfdc67d72c" SourceId="1" SourceUrl="http://theill-pc/Transmit.Internal/UsersService.svc?xsd=xsd1" />
+    <MetadataFile FileName="UsersService.disco" MetadataType="Disco" ID="58494cf0-7421-48fc-8ecc-3f0f67c6d41c" SourceId="1" SourceUrl="http://theill-pc/Transmit.Internal/UsersService.svc?disco" />
+    <MetadataFile FileName="UsersService1.xsd" MetadataType="Schema" ID="2ecd4857-b71c-4415-8ed7-febcd336ce61" SourceId="1" SourceUrl="http://theill-pc/Transmit.Internal/UsersService.svc?xsd=xsd2" />
+    <MetadataFile FileName="UsersService2.xsd" MetadataType="Schema" ID="1c815eb3-4079-4ca1-a4fd-219a8983aa0a" SourceId="1" SourceUrl="http://theill-pc/Transmit.Internal/UsersService.svc?xsd=xsd0" />
+    <MetadataFile FileName="UsersService.wsdl" MetadataType="Wsdl" ID="2be313e9-4372-432e-a1f4-eb95841574d6" SourceId="1" SourceUrl="http://theill-pc/Transmit.Internal/UsersService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="UsersService1.wsdl" MetadataType="Wsdl" ID="503c245d-0cd6-4997-b162-0fc98e6715cd" SourceId="1" SourceUrl="http://theill-pc/Transmit.Internal/UsersService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

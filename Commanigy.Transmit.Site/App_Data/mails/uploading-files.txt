@@ -1,0 +1,8 @@
+﻿Hi [Recipient.DisplayName],
+
+A file has just been shared to you by [Sender.DisplayName]. You may pick it up immediately from this location:
+
+[File.Location]
+
+
+Thanks

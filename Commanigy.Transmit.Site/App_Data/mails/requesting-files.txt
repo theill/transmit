@@ -1,0 +1,10 @@
+﻿Hi [Recipient.DisplayName],
+
+[Mail.Message]
+
+Use this link to send me files:
+
+[Url.Location]
+
+
+Thanks

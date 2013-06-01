@@ -1,0 +1,111 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Commanigy.Transmit.Site.SiteMasterPage" %><!doctype html>
+<html lang="en">
+<head id="Head1" runat="server">
+	<meta charset="utf-8">
+	<title><%= Page.Title %> | Transmit</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link href="stylesheets/reset.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/text.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/960.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/base.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+	<!--[if IE 7]>
+	<link href="stylesheets/ie7.css" media="screen" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<link rel="SHORTCUT ICON" href="favicon.ico" type="image/x-icon" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script>!window.jQuery && document.write('<script src="js/jquery-1.4.2.min.js"><\/script>')</script>
+
+	<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
+	<script type="text/javascript" src="js/swfobject.js"></script>
+	<script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>	
+	<script type="text/javascript" src="js/jquery.uploadify.v2.1.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.html5-fileupload.js"></script>
+	<script type="text/javascript" src="js/jquery.idtabs.min.js"></script>	
+	<script type="text/javascript">
+		var TransmitMessages = {
+			"Scanning and compressing file...": '<%= _("Scanning and compressing file...") %>',
+			"Remove": '<%= _("Remove") %>',
+			"Cancel": '<%= _("Cancel") %>',
+			"Clear": '<%= _("Clear") %>',
+			"Remove as recipient": '<%= _("Remove as recipient") %>',
+			"File was uploaded and ready for use": '<%= _("File was uploaded and ready for use") %>',
+			"File was already uploaded and has been ignored": '<%= _("File was already uploaded and has been ignored") %>',
+			"Failed to upload file.": '<%= _("Failed to upload file.") %>',
+			"File is too big": '<%= _("File is too big") %>',
+			"File could not be stored on remote server.": '<%= _("File could not be stored on remote server.") %>',
+			"You need Flash to upload files": '<%= _("You need Flash to upload files") %>',
+			"Add files...": '<%= _("Add files...") %>'
+		};
+
+		TransmitSettings = {
+			PictureUrl: 'Pictures.ashx',
+			UploadUrl: '<%= Commanigy.Transmit.Data.TransmitSettings.Instance.UploadUrl %>',
+			UsersLookupUrl: '<%= Commanigy.Transmit.Data.TransmitSettings.Instance.UsersLookupUrl %>',
+			MaxFileSizeKb: <%= Commanigy.Transmit.Data.TransmitSettings.Instance.Setting.UploadSizeLimit %>
+		};
+	</script>
+	<script type="text/javascript" src="js/application.js"></script>
+	<script type="text/javascript" src="js/ldap-lookup.js"></script>
+
+	<asp:ContentPlaceHolder ID="head" runat="server" />
+	<%= InsertCompanyLogoCss() %>
+</head>
+<body class="<%= BodyCssClasses %>">
+
+	<div id="n" class="container_12">
+		<div class="grid_12">
+			<% if (IsAuthenticated) { %>
+				<div class="menu-navigation">
+					<ul>
+						<li class="application-name"><a href="default.aspx"><img src="images/transparent.gif" width="200" height="48" border="0" alt="" /></a></li>
+						<%= MenuLiTag("default.aspx", _("Home"), "") %>
+						<%= MenuLiTag("share.aspx", _("Share"), "") %>
+						<%= MenuLiTag("request.aspx", _("Request"), "") %>
+					</ul>
+					<ul class="account">
+						<%= MenuLiTag("profile.aspx", _("Activities"), "first display-name") %>
+						<% if (this.IsAdministrator) { %>
+							<%= MenuLiTag("admin.settings.aspx", _("Settings"), "") %>
+						<% } %>
+						<%= MenuLiTag("help.aspx", _("Help"), "toggle-help") %>
+					</ul>
+				</div>
+			<% } else { %>
+				<div class="menu-navigation">
+					<ul>
+						<li class="application-name">&nbsp;</li>
+					</ul>
+				</div>
+			<% } %>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="container_12">
+		<div id="c">
+			<div class="grid_12">
+				<div class="flash"><asp:Label ID="LblFlash" runat="server" /></div>
+				<div id="p">
+					<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="f">
+			<ul>
+				<li><%= _("&copy; 2009-{0} {1} - Licensed to {2}", DateTime.UtcNow.Year, "<a href=\"" + Commanigy.Transmit.Data.TransmitSettings.Instance.ApplicationUrl + "?ref=" + Commanigy.Transmit.Data.TransmitSettings.Instance.ApplicationName + "\">" + Commanigy.Transmit.Data.TransmitSettings.Instance.ApplicationName + "</a>", "<span class=\"company-name\">" + Commanigy.Transmit.Data.TransmitSettings.Instance.Setting.CompanyName + "</span>")%></li>
+				<li class="language">
+					<span id="current-language"><a href="#" id="display-language-picker"><%= System.Threading.Thread.CurrentThread.CurrentCulture.DisplayName %></a></span>
+					<ul id="language-picker">
+						<li class="<%= (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "en-US") ? "selected" : "" %>"><a href="?language=en-US">English (United States)</a></li>
+						<li class="<%= (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "da-DK") ? "selected" : "" %>"><a href="?language=da-DK">Danish (Denmark)</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

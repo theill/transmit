@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Commanigy.Transmit.Site.Global" Language="C#" %>
