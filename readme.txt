@@ -1,6 +1,3 @@
-mstsc /v:80.196.100.70
-adminpt/4rfv5tgb
-
 
 run 'pack.cmd' to pack files so they are ready to be deployed
 
